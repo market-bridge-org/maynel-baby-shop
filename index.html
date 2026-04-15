@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MayNel Baby Shop | Մանկական խանութ 0-14տ.</title>
+  <meta name="description" content="MayNel մանկական խանութ-սրահ. Մանրածախ և մեծածախ ընտրանի՝ 0-14տ․ Նորածնային պարագաներ, խնամք, հագուստ և ավելին։" />
+  <style>
+    :root {
+      --bg: #fff7f1;
+      --surface: #ffffffcc;
+      --surface-strong: #ffffff;
+      --text: #32221f;
+      --muted: #7f6b66;
+      --brand: #ef7e62;
+      --brand-2: #ffd47c;
+      --brand-3: #efb6a3;
+      --ok: #2da77a;
+      --ring: #f4c4b2;
+      --shadow: 0 12px 40px rgba(96, 55, 43, 0.14);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Nunito", "Segoe UI", "Trebuchet MS", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 8% 10%, #ffe3cf 0%, transparent 40%),
+        radial-gradient(circle at 90% 20%, #ffeebb 0%, transparent 44%),
+        radial-gradient(circle at 70% 90%, #ffd8c8 0%, transparent 40%),
+        var(--bg);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(92%, var(--max));
+      margin-inline: auto;
+    }
+
+    .section { padding: 84px 0; }
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      line-height: 1.1;
+      margin: 0 0 12px;
+      letter-spacing: 0.01em;
+    }
+    .section-sub {
+      margin: 0;
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .top-blur {
+      position: fixed;
+      inset: -120px -10% auto;
+      height: 260px;
+      pointer-events: none;
+      z-index: 10;
+      background: linear-gradient(to bottom, rgba(255,247,241,.92), rgba(255,247,241,0));
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.66);
+      border-bottom: 1px solid #f3ddd1;
+    }
+    .nav-inner {
+      width: min(94%, var(--max));
+      margin-inline: auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .logo img {
+      width: 46px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 6px 16px rgba(0,0,0,.14);
+    }
+    .menu {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .menu::-webkit-scrollbar { display: none; }
+    .menu a {
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #5f4a43;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: .92rem;
+      transition: .25s ease;
+    }
+    .menu a.active,
+    .menu a:hover {
+      background: #fff;
+      color: var(--brand);
+      box-shadow: 0 6px 18px rgba(211, 123, 96, .22);
+    }
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid #f2d7cb;
+      border-radius: 12px;
+      background: #fff;
+      color: #6d4b42;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(124, 74, 60, .12);
+    }
+    .menu-toggle .bar {
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 99px;
+      position: relative;
+      transition: .25s ease;
+    }
+    .menu-toggle .bar::before,
+    .menu-toggle .bar::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 99px;
+      transition: .25s ease;
+    }
+    .menu-toggle .bar::before { top: -6px; }
+    .menu-toggle .bar::after { top: 6px; }
+    .menu-toggle.open .bar { background: transparent; }
+    .menu-toggle.open .bar::before { top: 0; transform: rotate(45deg); }
+    .menu-toggle.open .bar::after { top: 0; transform: rotate(-45deg); }
+
+    .hero {
+      padding: 72px 0 32px;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      gap: 28px;
+      align-items: center;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #f2d6ca;
+      box-shadow: 0 5px 20px rgba(128, 79, 65, .08);
+      font-weight: 700;
+      font-size: .84rem;
+      color: #8a4d40;
+      margin-bottom: 14px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: 1.02;
+      letter-spacing: .01em;
+    }
+    .hero p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.6vw, 1.16rem);
+      max-width: 56ch;
+    }
+    .cta-row {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 800;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-main {
+      color: #fff;
+      background: linear-gradient(135deg, #eb7254, #f7a263);
+      box-shadow: 0 14px 30px rgba(230, 114, 82, .35);
+    }
+    .btn-ghost {
+      background: #fff;
+      color: #915b4d;
+      border: 1px solid #f0d2c5;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: linear-gradient(155deg, #ffe2d2, #fff8ed 44%, #ffd1bd 130%);
+      padding: 14px;
+      box-shadow: var(--shadow);
+      position: relative;
+      isolation: isolate;
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      right: -70px;
+      top: -55px;
+      background: radial-gradient(circle, #ffd564, transparent 70%);
+      opacity: .75;
+      z-index: -1;
+    }
+    .hero-media {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .hero-media img {
+      border-radius: 14px;
+      object-fit: cover;
+      width: 100%;
+      min-height: 140px;
+      box-shadow: 0 8px 20px rgba(90, 55, 40, .2);
+      transition: transform .35s ease;
+    }
+    .hero-card:hover img { transform: scale(1.02); }
+
+    .stat-row {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .stat {
+      background: #fff;
+      border: 1px solid #f1d8cd;
+      border-radius: 14px;
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .stat b { display: block; font-size: 1.05rem; }
+    .stat span { color: var(--muted); font-size: .8rem; }
+
+    .about-card {
+      display: grid;
+      gap: 20px;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid #f1ddd3;
+      padding: 22px;
+      box-shadow: 0 10px 28px rgba(102, 56, 41, .08);
+    }
+
+    .cols-3 {
+      display: grid;
+      gap: 14px;
+      margin-top: 26px;
+    }
+    .product-card,
+    .benefit,
+    .quote,
+    .faq-item {
+      border-radius: var(--radius-md);
+      background: var(--surface-strong);
+      border: 1px solid #f1ddd3;
+      box-shadow: 0 10px 24px rgba(88, 47, 37, 0.08);
+    }
+
+    .product-card {
+      overflow: hidden;
+      transition: transform .22s ease, box-shadow .3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 34px rgba(88, 47, 37, 0.18);
+    }
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+    .product-body { padding: 14px; }
+    .tag {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #fff0e7;
+      color: #9d563d;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+    .price {
+      margin-top: 8px;
+      font-weight: 800;
+      color: var(--ok);
+    }
+
+    .benefit-wrap,
+    .social-wrap,
+    .faq-wrap {
+      margin-top: 28px;
+      display: grid;
+      gap: 14px;
+    }
+    .benefit { padding: 18px; }
+    .benefit h3 {
+      margin: 0 0 8px;
+      font-size: 1.06rem;
+    }
+    .benefit p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .gallery-grid {
+      margin-top: 26px;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      border: 1px solid #f2d8cb;
+      min-height: 160px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease, filter .35s ease;
+      filter: saturate(1.02);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+      filter: saturate(1.15);
+    }
+    .gallery-item::after {
+      content: attr(data-caption);
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      font-size: .75rem;
+      padding: 7px 9px;
+      border-radius: 10px;
+      color: #fff;
+      background: linear-gradient(to right, rgba(0,0,0,.58), rgba(0,0,0,.22));
+      opacity: 0;
+      transform: translateY(8px);
+      transition: .25s ease;
+    }
+    .gallery-item:hover::after { opacity: 1; transform: translateY(0); }
+
+    .quote { padding: 18px; }
+    .quote p {
+      margin: 0;
+      color: #5e4d47;
+      font-weight: 600;
+    }
+    .quote b {
+      display: block;
+      margin-top: 8px;
+      color: #8d5748;
+      font-size: .9rem;
+    }
+
+    .faq-item {
+      padding: 0;
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      border: 0;
+      background: #fff;
+      padding: 14px 16px;
+      font-size: .98rem;
+      font-weight: 800;
+      color: #513831;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+      color: #715f59;
+      padding: 0 16px;
+    }
+    .faq-item.open .faq-a {
+      max-height: 180px;
+      padding: 0 16px 14px;
+    }
+
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      padding: 34px 22px;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(255, 228, 170, .6), transparent 36%),
+        radial-gradient(circle at 86% 78%, rgba(255, 205, 178, .52), transparent 38%),
+        linear-gradient(135deg, #fff3ec, #ffe9de);
+      border: 1px solid #f2d9cc;
+      box-shadow: var(--shadow);
+    }
+    .final-cta h3 {
+      margin: 0;
+      font-size: clamp(1.45rem, 4vw, 2.2rem);
+      line-height: 1.15;
+    }
+    .final-cta p {
+      margin: 10px 0 0;
+      color: #705d58;
+      max-width: 62ch;
+    }
+
+    footer {
+      padding: 36px 0 42px;
+      color: #7a6761;
+      text-align: center;
+      font-size: .92rem;
+    }
+
+    .float-ig {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 30;
+      width: 52px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      color: #fff;
+      background: linear-gradient(140deg, #f9ce34, #ee2a7b 52%, #6228d7);
+      box-shadow: 0 10px 24px rgba(167, 54, 101, 0.34);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(31, 16, 14, .78);
+      display: none;
+      place-items: center;
+      z-index: 60;
+      padding: 16px;
+    }
+    .lightbox.open { display: grid; }
+    .lightbox img {
+      max-width: min(92vw, 860px);
+      max-height: 80vh;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.4);
+      box-shadow: 0 16px 36px rgba(0,0,0,.4);
+    }
+
+    @media (min-width: 760px) {
+      .hero-grid { grid-template-columns: 1.1fr .9fr; }
+      .about-card { grid-template-columns: 1fr 1fr; }
+      .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .benefit-wrap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .social-wrap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .faq-wrap { grid-template-columns: 1fr 1fr; }
+      .gallery-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: 180px;
+      }
+      .gallery-item.tall { grid-row: span 2; }
+      .gallery-item.wide { grid-column: span 2; }
+    }
+
+    @media (max-width: 759px) {
+      .menu-toggle {
+        display: inline-flex;
+      }
+      .menu {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 10px);
+        width: min(84vw, 320px);
+        flex-direction: column;
+        gap: 4px;
+        padding: 10px;
+        border-radius: 16px;
+        background: #fff;
+        border: 1px solid #f2d7cb;
+        box-shadow: 0 16px 30px rgba(89, 52, 42, .16);
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: .25s ease;
+      }
+      .menu.open {
+        max-height: 380px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .menu a {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal, .gallery-item img, .btn, .product-card { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-blur" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="#top" aria-label="MayNel Home">
+        <img src="assets/img/ig-01.jpg" alt="MayNel logo" />
+        <span>MayNel</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="site-menu">
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+      <div class="menu" id="site-menu">
+        <a href="#about">Մեր մասին</a>
+        <a href="#products">Տեսականի</a>
+        <a href="#benefits">Ինչու մենք</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="hero section">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <span class="pill">Verified Instagram Shop • 27.8K+ community</span>
+        <h1>MayNel<br>Մանկական աշխարհ 0-14տ․</h1>
+        <p>
+          Մանրածախ և մեծածախ մանկական խանութ Երևանում։
+          Նորածնից մինչև 14 տարեկան երեխաների համար հագուստ, խնամքի պարագաներ,
+          տակաշորեր, խոնավ անձեռոցիկներ և ամենօրյա անհրաժեշտ ապրանքներ։
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-main" href="https://www.instagram.com/maynel_baby_shop/" target="_blank" rel="noopener">Instagram-ում պատվիրել</a>
+          <a class="btn btn-ghost" href="tel:+37477558569">Զանգահարել +374 77 55 85 69</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal" style="transition-delay:.08s">
+        <div class="hero-media">
+          <img src="assets/img/ig-02.jpg" alt="MayNel store reel preview" />
+          <img src="assets/img/ig-03.jpg" alt="MayNel store reel preview" />
+          <img src="assets/img/ig-04.jpg" alt="Baby products" />
+          <img src="assets/img/ig-05.jpg" alt="Baby care products" />
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b>27.8K</b><span>Followers</span></div>
+          <div class="stat"><b>12.3K+</b><span>Posts</span></div>
+          <div class="stat"><b>Every Day</b><span>9:00-18:00</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-card reveal">
+        <div>
+          <h2 class="section-title">MayNel-ի պատմությունը</h2>
+          <p class="section-sub">
+            MayNel-ը կառուցված է մայրիկների իրական կարիքների շուրջ։ Instagram էջում արդեն
+            տարիներ շարունակ ներկայացվում է նորածնային խնամքի և մանկական ապրանքների մեծ ընտրանի,
+            արագ պատասխան, և ջերմ սպասարկում։
+          </p>
+        </div>
+        <div>
+          <p class="section-sub">
+            Խանութ-սրահի հասցե՝ <b>Արշակունյաց 17/8, Shopping City</b>։
+            Կարող եք պատվիրել օնլայն կամ այցելել խանութ։
+            Տեսականին ներառում է նորածնային հավաքածուներ, տակաշորեր, խոնավ անձեռոցիկներ,
+            կրծքի ներդիրներ, հագուստ և 0-14 տարեկանների համար անհրաժեշտ պարագաներ։
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Featured Products / Տեսականի</h2>
+      <p class="section-sub reveal">Վերջին հրապարակումների հիման վրա ընտրված պահանջված ապրանքներ</p>
+
+      <div class="cols-3">
+        <article class="product-card reveal">
+          <img src="assets/img/ig-04.jpg" alt="Disposable underpads" />
+          <div class="product-body">
+            <span class="tag">Essential Care</span>
+            <h3>Մեկանգամյա տակաշորեր</h3>
+            <p>Նորածնային խնամքի ամենօրյա must-have</p>
+            <div class="price">7 հատ • 1600 դրամ</div>
+          </div>
+        </article>
+
+        <article class="product-card reveal" style="transition-delay:.06s">
+          <img src="assets/img/ig-06.jpg" alt="Wet wipes" />
+          <div class="product-body">
+            <span class="tag">Hygiene</span>
+            <h3>Խոնավ անձեռոցիկներ</h3>
+            <p>Կրծքի, ծծակի ու խաղալիքների նուրբ մաքրում</p>
+            <div class="price">64 հատ • 800 դրամից</div>
+          </div>
+        </article>
+
+        <article class="product-card reveal" style="transition-delay:.12s">
+          <img src="assets/img/ig-09.jpg" alt="Postpartum and mom care" />
+          <div class="product-body">
+            <span class="tag">Mom Care</span>
+            <h3>Մայրիկի խնամք</h3>
+            <p>Հետծննդաբերական պարագաներ և կրծքի ներդիրներ</p>
+            <div class="price">3 հատ • 1100 դրամ</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="benefits" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Ինչու ընտրել MayNel</h2>
+      <div class="benefit-wrap">
+        <article class="benefit reveal">
+          <h3>Մեծ ընտրանի 0-14տ․</h3>
+          <p>Մեկ վայրում կարող եք հավաքել և՛ նորածնի, և՛ մեծ երեխայի ամենօրյա կարիքները։</p>
+        </article>
+        <article class="benefit reveal" style="transition-delay:.06s">
+          <h3>Մանրածախ + Մեծածախ</h3>
+          <p>Հարմար է և՛ ընտանիքների, և՛ վերավաճառողների համար՝ մրցունակ գներով։</p>
+        </article>
+        <article class="benefit reveal" style="transition-delay:.12s">
+          <h3>Արագ կապ Instagram-ով</h3>
+          <p>Ակտիվ էջ, արագ պատասխան DM-երով և ապրանքի իրական live/reel ցուցադրություններ։</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Instagram Style Gallery</h2>
+      <p class="section-sub reveal">Վերջին հրապարակումների վիզուալ ընտրանի</p>
+
+      <div class="gallery-grid">
+        <figure class="gallery-item tall reveal" data-caption="Store reel • MayNel" data-full="assets/img/ig-02.jpg"><img src="assets/img/ig-02.jpg" alt="MayNel reel" /></figure>
+        <figure class="gallery-item reveal" data-caption="Newborn essentials" data-full="assets/img/ig-04.jpg"><img src="assets/img/ig-04.jpg" alt="Newborn essentials" /></figure>
+        <figure class="gallery-item reveal" data-caption="Wet wipes collection" data-full="assets/img/ig-05.jpg"><img src="assets/img/ig-05.jpg" alt="Wet wipes collection" /></figure>
+        <figure class="gallery-item wide reveal" data-caption="Product showcase" data-full="assets/img/ig-06.jpg"><img src="assets/img/ig-06.jpg" alt="Product showcase" /></figure>
+        <figure class="gallery-item reveal" data-caption="Care set" data-full="assets/img/ig-07.jpg"><img src="assets/img/ig-07.jpg" alt="Care set" /></figure>
+        <figure class="gallery-item reveal" data-caption="Daily essentials" data-full="assets/img/ig-08.jpg"><img src="assets/img/ig-08.jpg" alt="Daily essentials" /></figure>
+        <figure class="gallery-item tall reveal" data-caption="Mom care essentials" data-full="assets/img/ig-09.jpg"><img src="assets/img/ig-09.jpg" alt="Mom care essentials" /></figure>
+        <figure class="gallery-item reveal" data-caption="Store vibe" data-full="assets/img/ig-03.jpg"><img src="assets/img/ig-03.jpg" alt="Store vibe" /></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Մեզ վստահում են հազարավոր մայրիկներ</h2>
+      <div class="social-wrap">
+        <article class="quote reveal">
+          <p>«DM-ով արագ պատասխանեցին, ապրանքն էլ լրիվ նույնն էր ինչ reel-ում։»</p>
+          <b>Instagram Customer</b>
+        </article>
+        <article class="quote reveal" style="transition-delay:.07s">
+          <p>«Ամեն ինչ մի տեղից գտանք նորածնի համար, գներն էլ հստակ նշված էին։»</p>
+          <b>New Mom • Yerevan</b>
+        </article>
+        <article class="quote reveal" style="transition-delay:.14s">
+          <p>«Իրենց էջը շատ ակտիվ է, շատ հեշտ է կողմնորոշվել ապրանքների մեջ։»</p>
+          <b>Community Feedback</b>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">Հաճախ տրվող հարցեր</h2>
+      <div class="faq-wrap">
+        <article class="faq-item reveal">
+          <button class="faq-q" type="button">Պատվերը ինչպես անել?<span>+</span></button>
+          <div class="faq-a">Կարող եք գրել Instagram DM կամ զանգահարել +374 77 55 85 69։</div>
+        </article>
+        <article class="faq-item reveal">
+          <button class="faq-q" type="button">Աշխատու՞մ եք ամեն օր?<span>+</span></button>
+          <div class="faq-a">Այո, խանութը բաց է ամեն օր՝ 9:00-18:00։</div>
+        </article>
+        <article class="faq-item reveal">
+          <button class="faq-q" type="button">Միայն նորածնի ապրանքնե՞ր կան։<span>+</span></button>
+          <div class="faq-a">Ոչ, MayNel-ն ունի 0-14 տարեկան երեխաների լայն տեսականի։</div>
+        </article>
+        <article class="faq-item reveal">
+          <button class="faq-q" type="button">Ունե՞ք մանրածախ ու մեծածախ։<span>+</span></button>
+          <div class="faq-a">Այո, էջի bio-ի համաձայն գործում է և՛ մանրածախ, և՛ մեծածախ վաճառք։</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="final-cta reveal">
+        <h3>Սիրով սպասում ենք MayNel խանութ-սրահում</h3>
+        <p>
+          Այցելեք՝ Արշակունյաց 17/8, Shopping City կամ կապվեք Instagram-ում։
+          Ձեր փոքրիկի համար ամենակարևոր ընտրությունն սկսվում է այստեղից։
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-main" href="https://www.instagram.com/maynel_baby_shop/" target="_blank" rel="noopener">Բացել Instagram էջը</a>
+          <a class="btn btn-ghost" href="https://sites.google.com/view/maynelarm/home" target="_blank" rel="noopener">Պաշտոնական հղում</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div><b>MayNel Baby Shop</b> • Instagram first kids brand</div>
+      <div><a href="https://www.instagram.com/maynel_baby_shop/" target="_blank" rel="noopener">@maynel_baby_shop</a></div>
+    </div>
+  </footer>
+
+  <a class="float-ig" href="https://www.instagram.com/maynel_baby_shop/" target="_blank" rel="noopener" aria-label="Open Instagram">◎</a>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <img src="" alt="Expanded product image" id="lightboxImage" />
+  </div>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+
+    const closeMenu = () => {
+      if (!menu || !menuToggle) return;
+      menu.classList.remove('open');
+      menuToggle.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    if (menuToggle && menu) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = menu.classList.toggle('open');
+        menuToggle.classList.toggle('open', isOpen);
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!menu.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 760) closeMenu();
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    const menuLinks = [...document.querySelectorAll('.menu a')];
+    const sections = menuLinks
+      .map(link => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = '#' + entry.target.id;
+          menuLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    document.querySelectorAll('.faq-q').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        item.classList.toggle('open');
+        btn.querySelector('span').textContent = item.classList.contains('open') ? '−' : '+';
+      });
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+
+    document.querySelectorAll('.gallery-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        lightboxImage.src = item.dataset.full;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+    });
+  </script>
+</body>
+</html>
